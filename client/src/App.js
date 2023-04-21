@@ -4,7 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Navbar from './components/Navbar'
-import Collection from './components/Collection'
+import Pokemon from './components/Pokemon'
 import './App.css';
 
 function App()
@@ -29,9 +29,9 @@ function App()
 	{
 		return (
 
-			<div>
+			<div key={pokemon.name}>
 				<p>Name: {pokemon.name}</p>
-				<p>Height: {pokemon.url}</p>
+				<p>URL: {pokemon.url}</p>
 			</div>
 		)
 	})
@@ -42,8 +42,8 @@ function App()
       <Routes>
         <Route index element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/pokemon/:pokemon" element={<Pokemon />}></Route>
       </Routes>
-      Working
       {myCollection}
     </>
     // <div className="App">
