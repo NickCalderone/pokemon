@@ -10,7 +10,7 @@ import './App.css';
 function App()
 {
 
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState([]);
 
   React.useEffect(() =>
   {
@@ -25,6 +25,17 @@ function App()
     }
   }, []);
 
+	let myCollection = data.map((pokemon) =>
+	{
+		return (
+
+			<div>
+				<p>Name: {pokemon.name}</p>
+				<p>Height: {pokemon.url}</p>
+			</div>
+		)
+	})
+
   return (
     <>
       <Navbar />
@@ -32,7 +43,8 @@ function App()
         <Route index element={<Home />}></Route>
         <Route path="/about" element={<About />}></Route>
       </Routes>
-      <Collection />
+      Working
+      {myCollection}
     </>
     // <div className="App">
     //   <header className="App-header">
