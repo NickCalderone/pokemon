@@ -1,25 +1,27 @@
 import styled from 'styled-components';
 import Tile from './Tile';
 
-let Tiles = styled.div`
-	padding: 20px;
-	border: solid 2px black;
-`
-
-export default function AllTiles({ data })
+export default function AllTiles({ data, loading })
 {
 
-	console.log(data)
-
-	let myTiles = data.map((pokemon, index) =>
-	 	<Tile name={pokemon.name} url={pokemon.url} />
-		// <Tiles key={index}>{pokemon.name}</Tiles>
+	let fetchedData = data.map((pokemon, index) =>
+		<Tile name={pokemon.name} url={pokemon.url} key={index} />
 	)
 
+	let myTiles = loading ? (<div>loading</div>) : fetchedData;
+
 	return (
-		<div className="wahoo">
+		<Tiles className="wahoo">
 			{myTiles}
-		</div>
+		</Tiles>
 	)
 
 }
+
+let Tiles = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 20px;
+	border: solid 2px black;
+`

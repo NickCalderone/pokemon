@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function useFetch(url)
+export default function useFetch(url, setLoading)
 {
 
 	// create data state
@@ -17,9 +17,9 @@ export default function useFetch(url)
 			setData(json.results)
 		}
 
-		fetchUrl();
+		fetchUrl().then(() => setLoading(false));
 
-	}, [url]);
+	}, [url, setLoading]);
 
 	return data;
 

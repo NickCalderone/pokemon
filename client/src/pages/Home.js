@@ -1,18 +1,18 @@
-import { Heading } from './styles'
-import Tile from '../components/Tile'
-import useFetch from '../utility'
+import { useState } from 'react';
+import useFetch from '../utility/utility'
 import AllTiles from '../components/AllTiles'
 
 export default function Home()
 {
 
-	let pokemonLinks = useFetch("/api/pokemon-links");
+	let [loading, setLoading] = useState(true);
+
+	let pokemonLinks = useFetch("/api/pokemon-links", setLoading);
 
 	return (
 		<>
-		<Heading>Home</Heading>
-		{/* <Tile pokemon="ditto" url="https://mypokemon.com" /> */}
-		<AllTiles data={ pokemonLinks } />
+		<h1>Home</h1>
+		<AllTiles data={ pokemonLinks } loading={loading} />
 		</>
 	)
 }

@@ -1,4 +1,3 @@
-import { Heading } from './styles'
 import useGetPokemon from '../hooks/useGetPokemon'
 
 export default function Pokemon()
@@ -7,7 +6,6 @@ export default function Pokemon()
 	// console.log('here', pokemonJson);
 
 	return (
-		<Heading>My Pokemon Page</Heading>
-
+		<h1>My Pokemon Page</h1>
 	)
 }
