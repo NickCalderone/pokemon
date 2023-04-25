@@ -10,32 +10,6 @@ import './App.css';
 function App()
 {
 
-  const [data, setData] = React.useState([]);
-
-  React.useEffect(() =>
-  {
-    let ignore = false;
-    fetch("/api/pokemon-links")
-      .then((res) => res.json())
-      .then((data) => setData(data.results.results));
-
-    return () =>
-    {
-      ignore = true;
-    }
-  }, []);
-
-	let myCollection = data.map((pokemon) =>
-	{
-		return (
-
-			<div key={pokemon.name}>
-				<p>Name: {pokemon.name}</p>
-				<p>URL: {pokemon.url}</p>
-			</div>
-		)
-	})
-
   return (
     <>
       <Navbar />
@@ -44,7 +18,6 @@ function App()
         <Route path="/about" element={<About />}></Route>
         <Route path="/pokemon/:pokemon" element={<Pokemon />}></Route>
       </Routes>
-      {myCollection}
     </>
     // <div className="App">
     //   <header className="App-header">

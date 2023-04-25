@@ -9,7 +9,9 @@ export default function useGetPokemon(pokemon)
 	{
 		async function getData()
 		{
-			await fetch(`/api/${pokemon}`).then(res => res.json()).then(res => setData(res));
+			await fetch(`/api/${pokemon}`)
+			.then(res => res.json())
+			.then(res => setData(res));
 		};
 
 		getData();
