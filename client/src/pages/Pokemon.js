@@ -24,10 +24,9 @@ export default function Pokemon()
 			{/* only evals first, since it doesnt need to get to second */}
 			{loading ? (<div>loading</div>) : (
 				<div>
-					<img src={data.sprites.other["official-artwork"].front_default} />
 					<h2>{data.name}</h2>
+					<img src={data.sprites.other["official-artwork"].front_default} alt={`official image of ${data.name}`} height="475" width="475" />
 					<Types types={data.types} />
-					{/* {data.types.map((type, index) => <TypeSpan className={type.type.name} key={index}>{type.type.name}</TypeSpan>)} */}
 				</div>
 			)}
 		</div>
