@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import useFetch from '../utility/utility';
 import { useState } from 'react';
 import Image from '../components/pokemon/Image'
@@ -14,25 +15,31 @@ export default function Pokemon()
 	let url = `/api/${pokemon}`;
 	let data = useFetch(url, setLoading, {});
 
-	// let types = loading ? data.types.map((type) =>
-	// 	<span>{type.name}</span>
-	// ) : "";
-
 	console.log(data)
 
 	return (
 		<div>
+			{/* Optional chaining prevents errors when the data has yet to be loaded */}
+			{/* {data?.name} */}
 			{/* only evals first, since it doesnt need to get to second */}
 			{loading ? (<div>loading</div>) : (
 				<div>
 					<img src={data.sprites.other["official-artwork"].front_default} />
 					<h2>{data.name}</h2>
-					{data.types.map((type, index) => <span key={index}>{type.type.name}</span>)}
+					{data.types.map((type, index) => <TypeSpan key={index}>{type.type.name}</TypeSpan>)}
 				</div>
 			)}
 		</div>
 	)
 }
+
+let TypeSpan = styled.span`
+	background-color: blue;
+	padding: 5px 10px;
+	border-radius: 7px;
+	margin: 5px;
+	color: white;
+`
 
 // null coalesing ?.
 // prevent content from eval
