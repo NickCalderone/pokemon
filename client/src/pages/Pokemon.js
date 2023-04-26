@@ -1,11 +1,42 @@
+import { useParams } from 'react-router-dom';
+import useFetch from '../utility/utility';
+import { useState } from 'react';
+import Image from '../components/pokemon/Image'
 import useGetPokemon from '../hooks/useGetPokemon'
 
 export default function Pokemon()
 {
-	// const pokemonJson = useGetPokemon();
-	// console.log('here', pokemonJson);
+
+	let { pokemon } = useParams();
+
+	let [loading, setLoading] = useState(true)
+
+	let url = `/api/${pokemon}`;
+	let data = useFetch(url, setLoading, {});
+
+	// let types = loading ? data.types.map((type) =>
+	// 	<span>{type.name}</span>
+	// ) : "";
+
+	console.log(data)
 
 	return (
-		<h1>My Pokemon Page</h1>
+		<div>
+			{/* only evals first, since it doesnt need to get to second */}
+			{loading ? (<div>loading</div>) : (
+				<div>
+					<img src={data.sprites.other["official-artwork"].front_default} />
+					<h2>{data.name}</h2>
+					{data.types.map((type, index) => <span key={index}>{type.type.name}</span>)}
+				</div>
+			)}
+		</div>
 	)
 }
+
+// null coalesing ?.
+// prevent content from eval
+// check out react query to inform how to use useFetch within react
+// bring loading state into useFetch
+// lookup react strict mode for why its rerendering without the usefetch
+// help react and general react discord channels

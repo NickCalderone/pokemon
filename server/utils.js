@@ -32,7 +32,7 @@ async function setPokemon(pokemon, pokemonStoreObject)
 		let jsonPokemon = await fetchPokemon.json();
 		pokemonStoreObject[pokemonUrl] = {
 			birth: Date.now(),
-			value: jsonPokemon
+			results: jsonPokemon
 		}
 	}
 }

@@ -4,7 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Navbar from './components/Navbar'
-import Pokemon from './components/Pokemon'
+import Pokemon from './pages/Pokemon'
 import './App.css';
 
 function App()

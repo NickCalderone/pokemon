@@ -7,12 +7,13 @@ export default function Home()
 
 	let [loading, setLoading] = useState(true);
 
-	let pokemonLinks = useFetch("/api/pokemon-links", setLoading);
+	let data = useFetch("/api/pokemon-links", setLoading, []);
+	console.log(data)
 
 	return (
 		<>
-		<h1>Home</h1>
-		<AllTiles data={ pokemonLinks } loading={loading} />
+			<h1>Home</h1>
+			<AllTiles data={data} loading={loading} />
 		</>
 	)
 }

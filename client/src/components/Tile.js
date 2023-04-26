@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Tile({ name, url }){
 
 	return (
-		<a href={url}>
+		<a href={`/pokemon/${name}`}>
 			<TileWrapper>
 				<Name>{name}</Name>
 			</TileWrapper>

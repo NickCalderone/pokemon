@@ -35,11 +35,9 @@ app.get("/api/pokemon-store", (req, res) =>
 
 app.get('/api/:pokemon', (req, res) =>
 {
-	// res.send(pokemonStore)
 	setPokemon(req.params.pokemon, pokemonStore).then(() => {
 		res.json(pokemonStore[`https://pokeapi.co/api/v2/pokemon/${req.params.pokemon}`])
 	})
-	// res.send(req.params)
 })
 
 
