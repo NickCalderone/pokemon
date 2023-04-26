@@ -21,10 +21,8 @@ async function setPokemonLinks(pokemonLinksObject)
 	} 
 }
 
-async function setPokemon(pokemon, pokemonStoreObject)
+async function setPokemon(pokemonUrl, pokemonStoreObject)
 {
-
-	let pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
 
 	if (!pokemonStoreObject.hasOwnProperty(pokemonUrl) || isTooOld(pokemonStoreObject[pokemonUrl].birth, 10))
 	{

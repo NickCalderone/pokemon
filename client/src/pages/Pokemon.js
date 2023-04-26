@@ -10,23 +10,28 @@ export default function Pokemon()
 
 	let { pokemon } = useParams();
 
-	let [loading, setLoading] = useState(true)
+	let [pokemonLoading, setPokemonLoading] = useState(true)
+	let [pokemonSpeciesLoading, setPokemonSpeciesLoading] = useState(true)
 
-	let url = `/api/${pokemon}`;
-	let data = useFetch(url, setLoading, {});
+	let url = `/api/pokemon/${pokemon}`;
+	let data = useFetch(url, setPokemonLoading, {});
 
-	console.log(data)
+	let speciesUrl = `/api/pokemon-species/${pokemon}`;
+	let speciesData = useFetch(speciesUrl, setPokemonSpeciesLoading, {});
+
+	// console.log(data)
 
 	return (
 		<div>
 			{/* Optional chaining prevents errors when the data has yet to be loaded */}
 			{/* {data?.name} */}
 			{/* only evals first, since it doesnt need to get to second */}
-			{loading ? (<div>loading</div>) : (
+			{(pokemonLoading || pokemonSpeciesLoading) ? (<div>loading</div>) : (
 				<div>
 					<h2>{data.name}</h2>
 					<img src={data.sprites.other["official-artwork"].front_default} alt={`official image of ${data.name}`} height="475" width="475" />
 					<Types types={data.types} />
+					{speciesData.flavor_text_entries[0].flavor_text}
 				</div>
 			)}
 		</div>

@@ -5,7 +5,8 @@ const app = express();
 const { isTooOld, setPokemonLinks, setPokemon } = require("./utils");
 
 let pokemonLinks = {};
-let pokemonStore = {}
+let pokemonStore = {};
+let pokemonSpeciesStore = {};
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
@@ -31,13 +32,37 @@ app.get("/api/pokemon-store", (req, res) =>
 	res.json(pokemonStore)
 })
 
+//--------------------api/pokemon-species-store--------------------
+
+app.get("/api/pokemon-species-store", (req, res) =>
+{
+	res.json(pokemonSpeciesStore)
+})
+
+//--------------------api/pokemon-species/:pokemon--------------------
+
+app.get("/api/pokemon-species/:pokemon", (req, res) =>
+{
+
+	let pokeUrl = `https://pokeapi.co/api/v2/pokemon-species/${req.params.pokemon}`
+
+	setPokemon(pokeUrl, pokemonSpeciesStore).then(() => {
+		res.json(pokemonSpeciesStore[pokeUrl])
+	})
+
+})
+
 //--------------------api/:pokemon--------------------
 
-app.get('/api/:pokemon', (req, res) =>
+app.get('/api/pokemon/:pokemon', (req, res) =>
 {
-	setPokemon(req.params.pokemon, pokemonStore).then(() => {
-		res.json(pokemonStore[`https://pokeapi.co/api/v2/pokemon/${req.params.pokemon}`])
+
+	let pokeUrl = `https://pokeapi.co/api/v2/pokemon/${req.params.pokemon}`
+
+	setPokemon(pokeUrl, pokemonStore).then(() => {
+		res.json(pokemonStore[pokeUrl])
 	})
+
 })
 
 
