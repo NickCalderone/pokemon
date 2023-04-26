@@ -12,7 +12,7 @@ export default function Pokemon()
 	return (
 		<>
 			<div>working hey {pokemon}</div>
-			<Image src={pokemon.results.sprites.other.official - artwork.front_default} />
+			{/* <Image src={pokemon.results.sprites.other.official - artwork.front_default} /> */}
 		</>
 	)
 }
