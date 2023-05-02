@@ -10,11 +10,15 @@ export default function Image({ src, name })
 }
 
 let ImageContainer = styled.div`
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	& img {
 		display: block;
-		margin: 0 auto;
-		border-radius: 10px;
-		border: solid #afafaf 2px;
+		object-fit: contain;
+		height: 100%;
+		width: 100%;
 	}
 `

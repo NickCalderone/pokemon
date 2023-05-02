@@ -7,39 +7,69 @@ import Types from '../components/pokemon/Types'
 import Stats from '../components/pokemon/Stats';
 import FlavorText from '../components/pokemon/FlavorText';
 import Details from '../components/pokemon/Details';
+import Heart from '../components/pokemon/Heart';
 
 const PokemonLayout = ({ data, speciesData }) => (
 	<>
 		<H2>{capitalize(data.name)}</H2>
+		<Favorite>Favorite<Heart /></Favorite>
 		<Layout>
 			<Avatar>
 				<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
 				<Types types={data.types} />
 			</Avatar>
-			<DetailsWrapper>
+			<DetailsTop>
 				<FlavorText data={speciesData.flavor_text_entries} />
 				<Stats data={data.stats} />
-				<br />
+			</DetailsTop>
+			<DetailsBottom>
 				<Details data={data} speciesData={speciesData} />
-			</DetailsWrapper>
+			</DetailsBottom>
 		</Layout>
 	</>
 );
 
 let Layout = styled.div`
 	display: grid;
-	gap: 40px;
-	padding: 40px;
-	grid-template-rows: auto;
+	gap: 20px;
+	padding: 20px;
+	grid-template-rows: auto auto;
 	grid-template-columns: 1fr 1fr;
+	max-width: 1010px;
+	margin: 0 auto;
+`
+
+let Favorite = styled.button`
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px;
+	background-color: #f4f4f4;
+	border: solid 2px red;
+	border-radius: 8px;
+	font-size: 20px;
+	margin: 0 auto;
 `
 
 let Avatar = styled.div`
 	grid-column: 1;
+	grid-row: 1 / 3;
+	border-radius: 10px;
+	background-color: rgb(230, 230, 230);
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `
 
-let DetailsWrapper = styled.div`
+let DetailsTop = styled.div`
 	grid-column: 2;
+	grid-row: 1;
+`
+
+let DetailsBottom = styled.div`
+	grid-column: 2;
+	grid-row: 2;
 `
 
 let H2 = styled.h2`

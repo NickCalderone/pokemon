@@ -19,8 +19,9 @@ export default function Details({data, speciesData})
 let DetailsStyled = styled.div`
 	display: flex;
 	padding: 20px;
-	gap: 20px;
+	gap: 10px;
 	flex-wrap: wrap;
 	background-color: #30a7d7;
 	border-radius: 10px;
+	height: 100%;
 `

@@ -14,7 +14,7 @@ let DetailStyled = styled.div`
 `
 let Label = styled.p`
 	color: white;
-	margin: 0 0 10px 0;
+	margin: 0 0 5px 0;
 `
 let Value = styled.p`
 	color: #333333;

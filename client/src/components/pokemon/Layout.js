@@ -9,12 +9,14 @@ export default function Layout()
 {
 	return (
 		<LayoutStyled>
-				<h2>{data.name}</h2>
-				<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
+			<h2>{data.name}</h2>
+			<Image src={data.sprites.other["official-artwork"].front_default} name={data.name}>
 				<div><Types types={data.types} /></div>
-				<FlavorText data={speciesData.flavor_text_entries} />
-				<Details data={data} speciesData={speciesData} />
-				<Stats data={data.stats} />
+			</Image>
+			<p>working</p>
+			<FlavorText data={speciesData.flavor_text_entries} />
+			<Details data={data} speciesData={speciesData} />
+			<Stats data={data.stats} />
 		</LayoutStyled>
 	)
 }

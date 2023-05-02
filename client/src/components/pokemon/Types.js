@@ -12,6 +12,8 @@ export default function Types({ types })
 
 let TypesStyled = styled.div`
 	text-align: center;
+	background-color: rgb(210, 208, 208);
+	padding: 5px;
 `
 
 let TypeStyled = styled.div`

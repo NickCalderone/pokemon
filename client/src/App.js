@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import logo from './logo.svg';
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
@@ -10,11 +10,13 @@ import './App.css';
 function App()
 {
 
+  let [favorites, setFavorites] = useState([]);
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route index element={<Home />}></Route>
+        <Route index element={<Home test="workingksljdflkdjlksdjfl"/>}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/pokemon/:pokemon" element={<Pokemon />}></Route>
       </Routes>

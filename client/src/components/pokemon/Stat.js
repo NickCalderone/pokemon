@@ -37,8 +37,6 @@ function chooseColor(number){
 export default function Stat({ name, stat })
 {
 
-	console.log("color", chooseColor(stat))
-
 	useEffect(()=>{
 		let stats = document.querySelectorAll(".stat");
 		stats.forEach((stat, index) => {
