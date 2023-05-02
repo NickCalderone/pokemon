@@ -6,8 +6,8 @@ const statMapping = {
 	attack: "Attack",
 	defense: "Defense",
 	speed: "Speed",
-	['special-attack']: "Sp. Atk",
-	['special-defense']: "Sp. Def",
+	"special-attack": "Sp. Atk",
+	"special-defense": "Sp. Def",
 
 };
 
