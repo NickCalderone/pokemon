@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useFetch from '../utility/utility'
+import { useFetch } from '../utility/utility'
 import AllTiles from '../components/AllTiles'
 
 export default function Home()

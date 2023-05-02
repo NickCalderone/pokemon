@@ -1,50 +1,50 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../utility/utility';
+import { capitalize, useFetch } from '../utility/utility';
 import { useState } from 'react';
+import styled from 'styled-components';
 import Image from '../components/pokemon/Image'
-import useGetPokemon from '../hooks/useGetPokemon'
 import Types from '../components/pokemon/Types'
-import Stat from '../components/pokemon/Stat';
+import Stats from '../components/pokemon/Stats';
+import FlavorText from '../components/pokemon/FlavorText';
+import Details from '../components/pokemon/Details';
 
-const PokemonDetails = ({ data, speciesData }) => (
-	<div>
-		<h2>{data.name}</h2>
-		<img src={data.sprites.other["official-artwork"].front_default} alt={`official image of ${data.name}`} height="475" width="475" />
-		<div><Types types={data.types} /></div>
-		<p>{findFlavorText(speciesData.flavor_text_entries)}</p>
-		<p>height:</p>
-		<p>{getHeight(data.height)}</p>
-		{makeStats(data.stats)}
-	</div>
+const PokemonLayout = ({ data, speciesData }) => (
+	<>
+		<H2>{capitalize(data.name)}</H2>
+		<Layout>
+			<Avatar>
+				<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
+				<Types types={data.types} />
+			</Avatar>
+			<DetailsWrapper>
+				<FlavorText data={speciesData.flavor_text_entries} />
+				<Stats data={data.stats} />
+				<br />
+				<Details data={data} speciesData={speciesData} />
+			</DetailsWrapper>
+		</Layout>
+	</>
 );
 
-function makeStats(data){
-	return (
-		data.map(item => (
-			// console.log(item)
-			<Stat name={item.stat.name} stat={item.base_stat} />
-		))
-	)
-}
+let Layout = styled.div`
+	display: grid;
+	gap: 40px;
+	padding: 40px;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr;
+`
 
-function findFlavorText(arra)
-{
+let Avatar = styled.div`
+	grid-column: 1;
+`
 
-	//find the first flavor text in english
-	const myText = arra.find(element => element.language.name == "en")
+let DetailsWrapper = styled.div`
+	grid-column: 2;
+`
 
-	//if there is no english flavor text, return the first entry
-	return myText.flavor_text
-}
-
-function getHeight(initial)
-{
-	let inchesFloat = initial * 3.9370;
-	let feetFloat = inchesFloat / 12;
-	let feet = Math.floor(feetFloat);
-	let inches = Math.round((feetFloat - feet) * 12);
-	return `${feet}' ${inches}"`;
-}
+let H2 = styled.h2`
+	text-align: center;
+`
 
 export default function Pokemon()
 {
@@ -57,17 +57,14 @@ export default function Pokemon()
 	let speciesUrl = `/api/pokemon-species/${pokemon}`;
 	let speciesData = useFetch(speciesUrl, setPokemonSpeciesLoading, {});
 
-
 	let url = `/api/pokemon/${pokemon}`;
 	let data = useFetch(url, setPokemonLoading, {});
 
 	const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
 
-
-
 	return (
 		<div>
-			{anythingLoading ? <div>loading</div> : <PokemonDetails data={data} speciesData={speciesData} />}
+			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} />}
 		</div>
 	)
 }

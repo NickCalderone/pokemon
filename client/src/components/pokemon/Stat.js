@@ -6,8 +6,8 @@ const statMapping = {
 	attack: "Attack",
 	defense: "Defense",
 	speed: "Speed",
-	["special-attack"]: "Sp. Atk",
-	["special-defense"]: "Sp. Def",
+	['special-attack']: "Sp. Atk",
+	['special-defense']: "Sp. Def",
 
 };
 
@@ -50,7 +50,11 @@ export default function Stat({ name, stat })
 
 	return (
 		<Bar stat={stat}>
-			<p className="stat-label">{formatStat(name)}</p><p className="stat-value"><strong>{stat}</strong></p><div data-stat={stat} className="stat"></div>
+			<p className="stat-label">{formatStat(name)}</p>
+			<p className="stat-value"><strong>{stat}</strong></p>
+			<div className="stat-wrapper">
+				<div className="stat" data-stat={stat}></div>
+			</div>
 		</Bar>
 	)
 }
@@ -59,7 +63,6 @@ const Bar = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 15px;
-	width: 400px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 
@@ -77,10 +80,15 @@ const Bar = styled.div`
 		margin: 0;
 	}
 
+	.stat-wrapper {
+		width: 100%;
+		height: 1rem;
+	}
+
 	.stat {
 		border-radius: .5rem;
 		display: inline-block;
-		height: 1rem;
+		height: 100%;
 		width: 0px;
 		background-color: ${props => chooseColor(props.stat)};
 		transition: width .5s ease-in-out;

@@ -4,16 +4,23 @@ export default function Types({ types })
 {
 
 	return (
-		<>
-			{ types.map((type, index) => <TypeSpan className={type.type.name} key={index}>{type.type.name}</TypeSpan>) }
-		</>
+		<TypesStyled>
+			{ types.map((type, index) => <TypeStyled className={type.type.name} key={index}>{type.type.name}</TypeStyled>) }
+		</TypesStyled>
 	)
 }
 
-let TypeSpan = styled.span`
+let TypesStyled = styled.div`
+	text-align: center;
+`
+
+let TypeStyled = styled.div`
+	display: inline-block;
 	padding: 5px 10px;
 	border-radius: 7px;
 	margin: 5px;
+	text-transform: capitalize;
+	width: 100px;
 
 	&.fire {
 		background-color: #fd7d24;
