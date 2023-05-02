@@ -9,10 +9,11 @@ import FlavorText from '../components/pokemon/FlavorText';
 import Details from '../components/pokemon/Details';
 import Heart from '../components/pokemon/Heart';
 
-const PokemonLayout = ({ data, speciesData }) => (
+const PokemonLayout = ({ data, speciesData, handleFavorites }) => (
 	<>
 		<H2>{capitalize(data.name)}</H2>
-		<Favorite>Favorite<Heart /></Favorite>
+		{console.log("data.name ", data.name)}
+		<Favorite onClick={() => handleFavorites(data.name)}>Favorite<Heart /></Favorite>
 		<Layout>
 			<Avatar>
 				<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
@@ -76,7 +77,7 @@ let H2 = styled.h2`
 	text-align: center;
 `
 
-export default function Pokemon()
+export default function Pokemon({handleFavorites})
 {
 
 	let { pokemon } = useParams();
@@ -94,7 +95,7 @@ export default function Pokemon()
 
 	return (
 		<div>
-			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} />}
+			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} handleFavorites={handleFavorites} />}
 		</div>
 	)
 }

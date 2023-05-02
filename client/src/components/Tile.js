@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Tile({ name, url }){
 
 	return (
-		<a href={`/pokemon/${name}`}>
+		<Link to={`/pokemon/${name}`}>
 			<TileWrapper>
 				<Name>{name}</Name>
 			</TileWrapper>
-		</a>
+		</Link>
 	)
 
 }

@@ -12,13 +12,20 @@ function App()
 
   let [favorites, setFavorites] = useState([]);
 
+  function handleFavorites(value)
+  {
+    if (!favorites.includes(value)){
+      setFavorites([...favorites, value])
+    } else setFavorites(favorites.filter(poke => poke !== value))
+  }
+
   return (
     <>
       <Navbar />
       <Routes>
-        <Route index element={<Home test="workingksljdflkdjlksdjfl"/>}></Route>
+        <Route index element={<Home favorites={favorites} />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/pokemon/:pokemon" element={<Pokemon />}></Route>
+        <Route path="/pokemon/:pokemon" element={<Pokemon handleFavorites={handleFavorites} />}></Route>
       </Routes>
     </>
     // <div className="App">
