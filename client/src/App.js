@@ -25,7 +25,7 @@ function App()
       <Routes>
         <Route index element={<Home favorites={favorites} />}></Route>
         <Route path="/about" element={<About />}></Route>
-        <Route path="/pokemon/:pokemon" element={<Pokemon handleFavorites={handleFavorites} />}></Route>
+        <Route path="/pokemon/:pokemon" element={<Pokemon favorites={favorites} handleFavorites={handleFavorites} />}></Route>
       </Routes>
     </>
     // <div className="App">

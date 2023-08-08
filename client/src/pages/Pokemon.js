@@ -7,13 +7,12 @@ import Types from '../components/pokemon/Types'
 import Stats from '../components/pokemon/Stats';
 import FlavorText from '../components/pokemon/FlavorText';
 import Details from '../components/pokemon/Details';
-import Heart from '../components/pokemon/Heart';
+import Favorite from '../components/pokemon/Favorite';
 
-const PokemonLayout = ({ data, speciesData, handleFavorites }) => (
+const PokemonLayout = ({ data, speciesData, favorites, handleFavorites }) => (
 	<>
 		<H2>{capitalize(data.name)}</H2>
-		{console.log("data.name ", data.name)}
-		<Favorite onClick={() => handleFavorites(data.name)}>Favorite<Heart /></Favorite>
+		<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
 		<Layout>
 			<Avatar>
 				<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
@@ -37,18 +36,6 @@ let Layout = styled.div`
 	grid-template-rows: auto auto;
 	grid-template-columns: 1fr 1fr;
 	max-width: 1010px;
-	margin: 0 auto;
-`
-
-let Favorite = styled.button`
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	padding: 10px;
-	background-color: #f4f4f4;
-	border: solid 2px red;
-	border-radius: 8px;
-	font-size: 20px;
 	margin: 0 auto;
 `
 
@@ -77,7 +64,7 @@ let H2 = styled.h2`
 	text-align: center;
 `
 
-export default function Pokemon({handleFavorites})
+export default function Pokemon({favorites, handleFavorites})
 {
 
 	let { pokemon } = useParams();
@@ -95,7 +82,7 @@ export default function Pokemon({handleFavorites})
 
 	return (
 		<div>
-			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} handleFavorites={handleFavorites} />}
+			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} favorites={favorites} handleFavorites={handleFavorites} />}
 		</div>
 	)
 }
