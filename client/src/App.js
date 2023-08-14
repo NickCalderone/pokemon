@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
+import Favorites from './pages/Favorites'
 import Navbar from './components/Navbar'
 import Pokemon from './pages/Pokemon'
 import './App.css';
@@ -14,7 +15,8 @@ function App()
 
   function handleFavorites(value)
   {
-    if (!favorites.includes(value)){
+    if (!favorites.includes(value))
+    {
       setFavorites([...favorites, value])
     } else setFavorites(favorites.filter(poke => poke !== value))
   }
@@ -25,6 +27,7 @@ function App()
       <Routes>
         <Route index element={<Home favorites={favorites} />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/favorites" element={<Favorites favorites={favorites}/>}></Route>
         <Route path="/pokemon/:pokemon" element={<Pokemon favorites={favorites} handleFavorites={handleFavorites} />}></Route>
       </Routes>
     </>
