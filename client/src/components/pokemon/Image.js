@@ -10,13 +10,10 @@ export default function Image({ src, name })
 }
 
 let ImageContainer = styled.div`
-	/* margin: 0 auto; */
+	// Prevent Content jumping when image loads
 	position: relative;
 	height: 0;
 	padding-top: 100%;
-	/* display: flex;
-	justify-content: center;
-	align-items: center; */
 
 	& img {
 		position: absolute;
@@ -24,9 +21,5 @@ let ImageContainer = styled.div`
 		left: 0;
 		max-width: 100%;
 		height: auto;
-		/* display: block;
-		object-fit: contain;
-		height: 100%;
-		width: 100%; */
 	}
 `
