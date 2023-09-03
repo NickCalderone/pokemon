@@ -9,7 +9,7 @@ export default function Tile({ name, url }){
 		// 		<Name>{name}</Name>
 		// 	</TileWrapper>
 		// </Link>
-		<LinkWrapper class="tile" to={`/pokemon/${name}`}>
+		<LinkWrapper className="tile" to={`/pokemon/${name}`}>
 			<TileWrapper>
 				<Name>{name}</Name>
 			</TileWrapper>
