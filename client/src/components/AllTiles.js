@@ -11,7 +11,7 @@ export default function AllTiles({ data, loading })
 	let myTiles = loading ? (<div>loading</div>) : fetchedData;
 
 	return (
-		<Tiles className="wahoo">
+		<Tiles>
 			{myTiles}
 		</Tiles>
 	)

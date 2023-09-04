@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+// html 5's fetch api, and reasons
 export function useFetch(url, setLoading, startingState)
 {
 
@@ -27,6 +28,24 @@ export function useFetch(url, setLoading, startingState)
 
 	return data;
 
+}
+
+export function useFetchAll( pokemon )
+{
+
+	// set the loading state for the pokemon data to true
+	let [pokemonLoading, setPokemonLoading] = useState(true)
+	let [pokemonSpeciesLoading, setPokemonSpeciesLoading] = useState(true)
+
+
+	// fetch all data about pokemon 
+	let speciesUrl = `/api/pokemon-species/${pokemon}`;
+	let speciesData = useFetch(speciesUrl, setPokemonLoading, {});
+	let url = `/api/pokemon/${pokemon}`;
+	let data = useFetch(url, setPokemonSpeciesLoading, {});
+
+	return [ data, pokemonLoading, speciesData, pokemonSpeciesLoading];
+	
 }
 
 export function getHeight(initial)

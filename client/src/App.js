@@ -6,6 +6,8 @@ import About from './pages/About'
 import Favorites from './pages/Favorites'
 import Navbar from './components/Navbar'
 import Pokemon from './pages/Pokemon'
+import styled from "styled-components";
+import container_bg from './assets/container_bg.png';
 import './App.css';
 
 function App()
@@ -24,22 +26,22 @@ function App()
   return (
     <>
       <Navbar />
+      <Content bg={container_bg}>
       <Routes>
         <Route index element={<Home favorites={favorites} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/favorites" element={<Favorites favorites={favorites}/>}></Route>
         <Route path="/pokemon/:pokemon" element={<Pokemon favorites={favorites} handleFavorites={handleFavorites} />}></Route>
       </Routes>
+      </Content>
     </>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>{!data ? "Loading..." : data[0].name}</p>
-
-    //   </header>
-    // </div>
   );
 }
+
+let Content = styled.div`
+  background: #fff url(${(props=> props.bg)});
+`
+
 
 
 export default App;

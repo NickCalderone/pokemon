@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { capitalize } from '../../utility/utility';
+import { capitalize, useFetchAll } from '../../utility/utility';
 import Image from './Image'
 import Types from './Types'
 import Stats from './Stats';
@@ -7,25 +7,37 @@ import FlavorText from './FlavorText';
 import Details from './Details';
 import Favorite from './Favorite';
 
-export default function PokemonLayout({ data, speciesData, favorites, handleFavorites })
+// export default function PokemonLayout({ data, speciesData, favorites, handleFavorites })
+export default function PokemonLayout({ pokemon, favorites, handleFavorites })
 {
+
+	let [data, pokemonLoading, speciesData, pokemonSpeciesLoading] = useFetchAll(pokemon);
+
+	const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
+
+	{ anythingLoading ? <div>loading</div> : <PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} /> }
+
 	return (
 		<>
-			<H2>{capitalize(data.name)}</H2>
-			<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
-			<Layout>
-				<Avatar>
-					<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
-					<Types types={data.types} />
-				</Avatar>
-				<DetailsTop>
-					<FlavorText data={speciesData.flavor_text_entries} />
-					<Stats data={data.stats} />
-				</DetailsTop>
-				<DetailsBottom>
-					<Details data={data} speciesData={speciesData} />
-				</DetailsBottom>
-			</Layout>
+			{anythingLoading ? <div>loading</div> :
+				<>
+					<H2>{capitalize(data.name)}</H2>
+					<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
+					<Layout>
+						<Avatar>
+							<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
+							<Types types={data.types} />
+						</Avatar>
+						<DetailsTop>
+							<FlavorText data={speciesData.flavor_text_entries} />
+							<Stats data={data.stats} />
+						</DetailsTop>
+						<DetailsBottom>
+							<Details data={data} speciesData={speciesData} />
+						</DetailsBottom>
+					</Layout>
+				</>
+			}
 		</>
 	)
 }
@@ -38,6 +50,7 @@ let Layout = styled.div`
 	grid-template-columns: 1fr 1fr;
 	max-width: 1010px;
 	margin: 0 auto;
+	background-color: white;
 `
 
 let Avatar = styled.div`

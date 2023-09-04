@@ -1,27 +1,23 @@
 import { useParams } from 'react-router-dom';
-import { useFetch } from '../utility/utility';
-import { useState } from 'react';
+import { useFetchAll } from '../utility/utility';
 import PokemonLayout from '../components/pokemon/PokemonLayout';
 
 export default function Pokemon({favorites, handleFavorites})
 {
 
+	// get the pokemon name from the url
 	let { pokemon } = useParams();
 
-	let [pokemonLoading, setPokemonLoading] = useState(true)
-	let [pokemonSpeciesLoading, setPokemonSpeciesLoading] = useState(true)
+	// fetch all data on the pokemon
+	// let [ data, pokemonLoading, speciesData, pokemonSpeciesLoading ] = useFetchAll(pokemon);
 
-	let speciesUrl = `/api/pokemon-species/${pokemon}`;
-	let speciesData = useFetch(speciesUrl, setPokemonSpeciesLoading, {});
-
-	let url = `/api/pokemon/${pokemon}`;
-	let data = useFetch(url, setPokemonLoading, {});
-
-	const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
+	// Check if anything is loading
+	// const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
 
 	return (
 		<div>
-			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} favorites={favorites} handleFavorites={handleFavorites} />}
+			{/* only display component if we are done loading */}
+			<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} />
 		</div>
 	)
 }
