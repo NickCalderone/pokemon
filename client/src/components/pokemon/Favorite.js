@@ -30,7 +30,6 @@ let FavoriteStyled = styled.button`
 	border: solid 2px grey;
 	border-radius: 8px;
 	font-size: 20px;
-	margin: 0 auto;
 	cursor: pointer;
 	transition: border .25s ease-in-out;
 

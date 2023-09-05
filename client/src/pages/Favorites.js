@@ -8,9 +8,7 @@ export default function Favorites({ favorites, handleFavorites })
 	{
 
 		return (
-			<>
-				<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} />
-			</>
+			<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} key={index}/>
 		)
 
 	})

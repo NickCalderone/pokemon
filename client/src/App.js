@@ -25,8 +25,9 @@ function App()
 
   return (
     <>
+      <Wrapper bg={container_bg}>
       <Navbar />
-      <Content bg={container_bg}>
+      <Content>
       <Routes>
         <Route index element={<Home favorites={favorites} />}></Route>
         <Route path="/about" element={<About />}></Route>
@@ -34,14 +35,17 @@ function App()
         <Route path="/pokemon/:pokemon" element={<Pokemon favorites={favorites} handleFavorites={handleFavorites} />}></Route>
       </Routes>
       </Content>
+      </Wrapper>
     </>
   );
 }
 
-let Content = styled.div`
+let Wrapper = styled.div`
   background: #fff url(${(props=> props.bg)});
 `
 
-
+let Content = styled.div`
+  padding: 40px;
+`
 
 export default App;
