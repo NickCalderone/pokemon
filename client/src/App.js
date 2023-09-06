@@ -35,7 +35,7 @@ function App()
   return (
     <>
       <Wrapper bg={container_bg}>
-      <Navbar />
+      <Navbar pokemonLinks={pokemonLinks} />
       <Main>
       <Routes>
         <Route index element={<Home loading={pokemonLinksLoading} pokemonLinks={pokemonLinks} />}></Route>

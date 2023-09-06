@@ -6,25 +6,44 @@ export default function Tile({ name, url }){
 	return (
 		<LinkWrapper className="tile" to={`/pokemon/${name}`}>
 			<TileWrapper>
-				<Name>{name}</Name>
+				<p>{name}</p>
 			</TileWrapper>
 		</LinkWrapper>
 	)
 
 }
 
-let TileWrapper = styled.div`
-	border: solid 2px black;
-	padding: 10px;
-`
-
 let LinkWrapper = styled(Link)`
 	text-align: center;
-	flex: 0 1 15%;
-	max-width: 15%;
 	text-transform: capitalize;
+	text-decoration: none;
+	width: calc((100% / 5) - (80px / 5));
 `
 
-let Name = styled.h2`
+let TileWrapper = styled.div`
+	border-radius: 5px;
+	padding: 15px;
+	background-color: white;
+	border: 1px solid #58b9df;
+	color: var(--charcoal);
+	transition: background-color .1s ease-in-out;
 
+	&:hover {
+		background-color: var(--charcoal);
+		color: white;
+	}
+
+	& > p {
+		font-size: 20px;
+		margin: 0;
+		transition: color .1s ease-in-out;
+	}	
+
+		:hover > p {
+			color: var(--white);
+	}
+
+`
+
+let Name = styled.p`
 `

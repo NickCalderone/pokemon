@@ -52,7 +52,7 @@ export function useFetchPokemon(setLoading, setData)
 
 }
 
-export function useFetchAll( pokemon )
+export function useFetchAll(pokemon)
 {
 
 	// set the loading state for the pokemon data to true
@@ -66,8 +66,8 @@ export function useFetchAll( pokemon )
 	let url = `/api/pokemon/${pokemon}`;
 	let data = useFetch(url, setPokemonSpeciesLoading, {});
 
-	return [ data, pokemonLoading, speciesData, pokemonSpeciesLoading];
-	
+	return [data, pokemonLoading, speciesData, pokemonSpeciesLoading];
+
 }
 
 export function getHeight(initial)
@@ -98,6 +98,8 @@ export function getAbilities(data)
 	return myAbilities.join(", ")
 }
 
-export function capitalize(word){
+export function capitalize(word)
+{
 	return word.charAt(0).toUpperCase() + word.slice(1);
 }
+

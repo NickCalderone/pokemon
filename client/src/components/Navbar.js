@@ -1,9 +1,32 @@
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import Content from './shared/content'
+import Fuse from 'fuse.js';
+import { useState } from 'react';
 
-export default function NavBar()
+export default function NavBar({ pokemonLinks })
 {
+
+  let Fuze = new Fuse(pokemonLinks, {
+    threshold: 0.0,
+    keys: ["name"]
+  })
+
+  let [search, setSearch] = useState("");
+
+  let [results, setResults] = useState([]);
+
+  function handleSearch(e)
+  {
+    setSearch(e.target.value);
+
+    setResults(Fuze.search(e.target.value));
+    console.log(results)
+  }
+
+  let searchResults = results.map((result, index) => <p style={{ backgroundColor: "white", color: "black", padding: "10px" }} key={index}>{result.item.name}</p>);
+
+
   return (
     <Nav>
       <Content>
@@ -14,8 +37,11 @@ export default function NavBar()
             <LinkStyled to="/favorites" activeClassName="active">Favorites</LinkStyled>
           </Links>
           <SearchWrapper>
-            <SearchInput type="search" placeholder="Pikachu" />
-            <SearchButton>Search</SearchButton>
+            <SearchInput type="search" placeholder="Pikachu" value={search} onChange={handleSearch} />
+            <p style={{ color: "white" }}>{search}</p>
+            <div>
+              {searchResults}
+            </div>
           </SearchWrapper>
         </NavInner>
       </Content>

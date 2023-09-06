@@ -23,5 +23,5 @@ let Tiles = styled.div`
 	flex-wrap: wrap;
 	gap: 20px;
 	padding: 20px;
-	border: solid 2px black;
+	background-color: white;
 `
