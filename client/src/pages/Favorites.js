@@ -1,8 +1,23 @@
 import { useFetchAll } from "../utility/utility";
+import Content from "../components/shared/content";
+import H1 from "../components/shared/H1";
 import PokemonLayout from "../components/pokemon/PokemonLayout";
+import Loading from "../components/shared/Loading";
 
 export default function Favorites({ favorites, handleFavorites })
 {
+
+	if (favorites.length === 0)
+	{
+		return (
+			<Content>
+				<H1>Favorites</H1>
+				<div>
+					You have no favorites!
+				</div>
+			</Content>
+		)
+	}
 
 	let favoritedPokemon = favorites.map((pokemon, index) =>
 	{
@@ -14,13 +29,12 @@ export default function Favorites({ favorites, handleFavorites })
 	})
 
 	return (
-		<>
-			<h1>Favorites</h1>
-			<h2>{favorites.join(", ")}</h2>
+		<Content>
+			<H1>Favorites</H1>
 			<div>
 				{favoritedPokemon}
 			</div>
-		</>
+		</Content>
 	)
 }
 

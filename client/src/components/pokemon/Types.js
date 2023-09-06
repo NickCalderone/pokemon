@@ -36,7 +36,7 @@ let TypeStyled = styled.div`
 
 	&.poison {
 		background-color: #b97fc9;
-		color: white;
+		color: black;
 	}
 
 	&.water {

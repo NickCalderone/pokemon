@@ -6,6 +6,7 @@ import Stats from './Stats';
 import FlavorText from './FlavorText';
 import Details from './Details';
 import Favorite from './Favorite';
+import Id from "./Id";
 
 // export default function PokemonLayout({ data, speciesData, favorites, handleFavorites })
 export default function PokemonLayout({ pokemon, favorites, handleFavorites })
@@ -19,23 +20,25 @@ export default function PokemonLayout({ pokemon, favorites, handleFavorites })
 	return (
 		<>
 			{anythingLoading ? <div>loading</div> :
-					<Layout>
-						<Title>
-							<H2>{capitalize(data.name)}</H2>
-							<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
-						</Title>
-						<Avatar>
-							<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
-							<Types types={data.types} />
-						</Avatar>
-						<DetailsTop>
-							<FlavorText data={speciesData.flavor_text_entries} />
-							<Stats data={data.stats} />
-						</DetailsTop>
-						<DetailsBottom>
-							<Details data={data} speciesData={speciesData} />
-						</DetailsBottom>
-					</Layout>
+				<Layout>
+					<Title>
+						<TitleLeft>
+							<Id>#{data.id}</Id><H2>{capitalize(data.name)}</H2>
+						</TitleLeft>
+						<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
+					</Title>
+					<Avatar>
+						<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
+						<Types types={data.types} />
+					</Avatar>
+					<DetailsTop>
+						<FlavorText data={speciesData.flavor_text_entries} />
+						<Stats data={data.stats} />
+					</DetailsTop>
+					<DetailsBottom>
+						<Details data={data} speciesData={speciesData} />
+					</DetailsBottom>
+				</Layout>
 			}
 		</>
 	)
@@ -60,9 +63,16 @@ let Layout = styled.div`
 let Title = styled.div`
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	grid-column: 1 / 3;
 	grid-row: 1;
 	`
+
+let TitleLeft = styled.div`
+	display: flex;
+	gap: 10px;
+	align-items: center;
+`
 
 let Avatar = styled.div`
 	grid-column: 1;

@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import Tile from './Tile';
+import Loading from './shared/Loading';
 
 export default function AllTiles({ data, loading })
 {
 
-	let fetchedData = data.map((pokemon, index) =>
-		<Tile name={pokemon.name} url={pokemon.url} key={index} />
-	)
+	console.log("alltiles", data)
 
-	let myTiles = loading ? (<div>loading</div>) : fetchedData;
+
+	let myTiles = loading ? <Loading /> : data.map((pokemon, index) =><Tile name={pokemon.name} url={pokemon.url} key={index} />)
 
 	return (
 		<Tiles>

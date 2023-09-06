@@ -1,8 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useFetchAll } from '../utility/utility';
+import Content from '../components/shared/content';
 import PokemonLayout from '../components/pokemon/PokemonLayout';
+import H1 from '../components/shared/H1';
 
-export default function Pokemon({favorites, handleFavorites})
+export default function Pokemon({ favorites, handleFavorites })
 {
 
 	// get the pokemon name from the url
@@ -15,10 +17,11 @@ export default function Pokemon({favorites, handleFavorites})
 	// const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
 
 	return (
-		<div>
+		<Content>
+			<H1>Pokédex Entry</H1>
 			{/* only display component if we are done loading */}
 			<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} />
-		</div>
+		</Content>
 	)
 }
 

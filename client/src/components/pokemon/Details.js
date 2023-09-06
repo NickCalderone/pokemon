@@ -21,7 +21,7 @@ let DetailsStyled = styled.div`
 	padding: 20px;
 	gap: 10px;
 	flex-wrap: wrap;
-	background-color: #30a7d7;
+	background-color: #58B9DF;
 	border-radius: 10px;
 	height: 100%;
 `

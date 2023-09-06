@@ -1,18 +1,17 @@
 import { useState } from 'react';
-import { useFetch } from '../utility/utility'
+import { useFetch, useFetchPokemon } from '../utility/utility'
 import AllTiles from '../components/AllTiles'
+import Content from '../components/shared/content';
+import H1 from '../components/shared/H1';
+import Loading from '../components/shared/Loading';
 
-export default function Home({ favorites })
+export default function Home({ pokemonLinks, loading })
 {
-	let [loading, setLoading] = useState(true);
-
-	let data = useFetch("/api/pokemon-links", setLoading, []);
 
 	return (
-		<>
-			<h1>Home</h1>
-			<h2>{favorites.join(", ")}</h2>
-			<AllTiles data={data} loading={loading} />
-		</>
+		<Content>
+			<H1>Pokédex</H1>
+			<AllTiles data={pokemonLinks} loading={loading} />
+		</Content>
 	)
 }

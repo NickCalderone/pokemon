@@ -4,11 +4,6 @@ import styled from 'styled-components';
 export default function Tile({ name, url }){
 
 	return (
-		// <Link class="tile" to={`/pokemon/${name}`}>
-		// 	<TileWrapper>
-		// 		<Name>{name}</Name>
-		// 	</TileWrapper>
-		// </Link>
 		<LinkWrapper className="tile" to={`/pokemon/${name}`}>
 			<TileWrapper>
 				<Name>{name}</Name>

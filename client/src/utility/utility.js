@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// html 5's fetch api, and reasons
 export function useFetch(url, setLoading, startingState)
 {
 
@@ -27,6 +26,29 @@ export function useFetch(url, setLoading, startingState)
 	}, [url, setLoading]);
 
 	return data;
+
+}
+
+export function useFetchPokemon(setLoading, setData)
+{
+
+	//fetch data and update state
+	useEffect(() =>
+	{
+
+		async function fetchUrl()
+		{
+			let response = await fetch("/api/pokemon-links/");
+			let json = await response.json();
+			setData(json.results)
+		}
+
+		fetchUrl().then(() =>
+		{
+			setLoading(false)
+		});
+
+	}, [setData, setLoading]);
 
 }
 

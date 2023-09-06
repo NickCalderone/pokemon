@@ -13,10 +13,8 @@ let DetailStyled = styled.div`
 	flex: 1 0 40%;
 `
 let Label = styled.p`
-	color: white;
 	margin: 0 0 5px 0;
 `
 let Value = styled.p`
-	color: #333333;
 	margin: 0;
 `

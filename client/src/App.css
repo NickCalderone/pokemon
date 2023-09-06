@@ -1,8 +1,26 @@
+@font-family {
+  
+}
+
+:root {
+  --charcoal: #424242;
+}
+
+html {
+  /* prevent centered content from shifting when there is no scroll bar */
+  overflow-y: scroll;
+}
+
+body, html {
+  height: 100%;
+}
+
 h1 {
   font-size: 3rem;
   font-weight: 400;
   margin: 0;
   padding: 0;
+  color: var(--charcoal);
 }
 
 h2 {
@@ -10,7 +28,13 @@ h2 {
   font-weight: 400;
   margin: 0;
   padding: 0;
+  color: var(--charcoal);
 }
+
+p {
+  color: var(--charcoal);
+}
+
 div {
   box-sizing: border-box;
 }

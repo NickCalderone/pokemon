@@ -22,19 +22,21 @@ export default function Favorite({data, favorites, handleFavorites})
 }
 
 let FavoriteStyled = styled.button`
+	background-color: #e6e6e6;
 	display: flex;
 	align-items: center;
-	gap: 10px;
 	padding: 10px;
-	background-color: #f4f4f4;
-	border: solid 2px grey;
+	border: solid 2px var(--charcoal);
 	border-radius: 8px;
 	font-size: 20px;
 	cursor: pointer;
-	transition: border .25s ease-in-out;
+	transition: border .25s ease-in-out, background-color .25s ease-in-out, color .25s ease-in-out;
+	justify-content: space-between;
+	min-width: 137px;
 
 	&.favorited {
 		border: solid 2px red;
+		background-color: white
 	}
 
 	&.favorited .heart path {
