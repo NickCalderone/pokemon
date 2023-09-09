@@ -33,7 +33,7 @@ export default function PokemonLayout({ pokemon, favorites, handleFavorites })
 					</Avatar>
 					<DetailsTop>
 						<FlavorText data={speciesData.flavor_text_entries} />
-						<Stats data={data.stats} />
+						<Stats data={data.stats}/>
 					</DetailsTop>
 					<DetailsBottom>
 						<Details data={data} speciesData={speciesData} />
