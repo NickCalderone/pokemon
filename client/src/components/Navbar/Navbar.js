@@ -1,11 +1,23 @@
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import Content from './shared/content'
+import Content from '../shared/content'
 import Fuse from 'fuse.js';
 import { useState } from 'react';
+import Results from './Results';
 
 export default function NavBar({ pokemonLinks })
 {
+
+  // let myBody = document.querySelector("body");
+
+  function handleClick(e)
+  {
+    setResults([]);
+    setSearch("");
+  }
+
+  // myBody.addEventListener("click", handleClick);
+
 
   let Fuze = new Fuse(pokemonLinks, {
     threshold: 0.0,
@@ -21,11 +33,7 @@ export default function NavBar({ pokemonLinks })
     setSearch(e.target.value);
 
     setResults(Fuze.search(e.target.value));
-    console.log(results)
   }
-
-  let searchResults = results.map((result, index) => <p style={{ backgroundColor: "white", color: "black", padding: "10px" }} key={index}>{result.item.name}</p>);
-
 
   return (
     <Nav>
@@ -36,11 +44,10 @@ export default function NavBar({ pokemonLinks })
             <LinkStyled to="/about" activeClassName="active">About</LinkStyled>
             <LinkStyled to="/favorites" activeClassName="active">Favorites</LinkStyled>
           </Links>
-          <SearchWrapper>
-            <SearchInput type="search" placeholder="Pikachu" value={search} onChange={handleSearch} />
-            <p style={{ color: "white" }}>{search}</p>
-            <div>
-              {searchResults}
+          <SearchWrapper id="search">
+            <SearchInput type="search" placeholder="(ex: Pikachu)" value={search} onChange={handleSearch} />
+            <div className="test">
+              {(!results.length > 0) || <Results results={results} />}
             </div>
           </SearchWrapper>
         </NavInner>
@@ -50,12 +57,11 @@ export default function NavBar({ pokemonLinks })
 }
 
 let Nav = styled.nav`
-  background-color: #424242;
+  background-color: var(--charcoal);
   padding-left: 40px;
   padding-right: 40px;
-  opacity: 0.8;
-  border-top: 2px solid var(--charcoal);
-  border-bottom: 2px solid var(--charcoal);
+  border-top: 2px solid var(--charcoal-border);
+  border-bottom: 2px solid var(--charcoal-border);
 `
 
 let NavInner = styled.div`
@@ -81,6 +87,7 @@ let LinkStyled = styled(NavLink)`
 `
 
 let SearchWrapper = styled.div`
+  position: relative;
 `
 
 let SearchInput = styled.input`
@@ -89,14 +96,4 @@ let SearchInput = styled.input`
   padding-left: 10px;
   border-radius: 5px;
   border: none;
-`
-
-let SearchButton = styled.button`
-  height: 35px;
-  color: var(--charcoal);); 
-  border: none; 
-  border-radius: 5px; 
-  padding: 5px 10px;
-  margin-left: 5px;
-  cursor: pointer;
 `

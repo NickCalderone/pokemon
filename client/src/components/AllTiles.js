@@ -5,9 +5,6 @@ import Loading from './shared/Loading';
 export default function AllTiles({ data, loading })
 {
 
-	console.log("alltiles", data)
-
-
 	let myTiles = loading ? <Loading /> : data.map((pokemon, index) =><Tile name={pokemon.name} url={pokemon.url} key={index} />)
 
 	return (

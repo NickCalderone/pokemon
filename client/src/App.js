@@ -4,7 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Favorites from './pages/Favorites'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer'
 import Pokemon from './pages/Pokemon'
 import styled from "styled-components";
@@ -14,7 +14,6 @@ import './App.css';
 
 function App()
 {
-
   let [favorites, setFavorites] = useState([]);
 
   function handleFavorites(value)

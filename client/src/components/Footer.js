@@ -19,8 +19,7 @@ export default function Footer()
 }
 
 let FooterStyled = styled.footer`
-  	background-color: #424242;
-  	opacity: 0.8;
+  	background-color: var(--charcoal);
 `
 
 let FooterInner = styled.div`

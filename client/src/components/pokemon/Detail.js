@@ -17,4 +17,5 @@ let Label = styled.p`
 `
 let Value = styled.p`
 	margin: 0;
+	color: white;
 `

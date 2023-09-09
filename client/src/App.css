@@ -3,7 +3,9 @@
 }
 
 :root {
-  --charcoal: #424242;
+  /* --charcoal: #424242; */
+  --charcoal: rgba(66,66,66,.8);
+  --charcoal-border: rgba(66,66,66,0);
 }
 
 html {
