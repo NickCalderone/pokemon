@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { useEffect } from "react";
+import styled, { keyframes } from "styled-components";
+import { useRef } from "react";
 
 const statMapping = {
 	hp: "HP",
@@ -24,38 +24,54 @@ const colorMapping = {
 	10: "#da00ff"
 }
 
-function formatStat(myName) {
+function formatStat(myName)
+{
 	return statMapping[myName] || "Error";
 }
 
-function chooseColor(number){
+function chooseColor(number)
+{
 	let percent = number / 250 * 100;
-	let bucket =  Math.ceil(percent / 10)
+	let bucket = Math.ceil(percent / 10)
 	return colorMapping[bucket];
 }
 
-export default function Stat({ name, stat })
+export default function Stat({ name, stat, index })
 {
 
-	useEffect(()=>{
-		let stats = document.querySelectorAll(".stat");
-		stats.forEach((stat, index) => {
-			let myStat = stat.dataset.stat;
-			stat.style.width = myStat / 250 * 100 + "%";
-			stat.style.transitionDelay = 100 * index + "ms";
-		})
-	}, [])
+	let myStat = useRef(null);
+
+	let myWidth = stat / 250 * 100 + "%";
+	let myDelay = 100 * index + "ms";
 
 	return (
 		<Bar stat={stat}>
 			<p className="stat-label">{formatStat(name)}</p>
 			<p className="stat-value"><strong>{stat}</strong></p>
 			<div className="stat-wrapper">
-				<div className="stat" data-stat={stat}></div>
+				<StatStyled chooseColor={()=>chooseColor(stat)} myWidth={myWidth} myDelay={myDelay} ref={myStat}></StatStyled>
 			</div>
 		</Bar>
 	)
 }
+
+let grow = (props) => keyframes`
+	0% {
+	  	width: 0%;
+	}
+	100% {
+		width: ${props.myWidth};
+	}
+`
+
+let StatStyled = styled.div`
+	width: 0%;
+	border-radius: .5rem;
+	display: inline-block;
+	height: 100%;
+	background-color: ${props => props.chooseColor};
+	animation: .6s ease-in-out ${props => props.myDelay} 1 ${ props => grow(props) } forwards;
+`
 
 const Bar = styled.div`
 	display: flex;
@@ -84,11 +100,5 @@ const Bar = styled.div`
 	}
 
 	.stat {
-		border-radius: .5rem;
-		display: inline-block;
-		height: 100%;
-		width: 0px;
-		background-color: ${props => chooseColor(props.stat)};
-		transition: width .5s ease-in-out;
 	}
 `
