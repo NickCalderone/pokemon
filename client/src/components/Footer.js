@@ -23,7 +23,7 @@ let FooterStyled = styled.footer`
 `
 
 let FooterInner = styled.div`
-	height: 120px;
+	height: 80px;
 	display: flex;
 	margin: 0 auto;	
 	align-items: center;
