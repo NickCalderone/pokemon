@@ -27,7 +27,7 @@ let FavoriteStyled = styled.button`
 	align-items: center;
 	padding: 10px;
 	border: solid 2px var(--charcoal);
-	border-radius: 8px;
+	border-radius: 5px;
 	font-size: 20px;
 	cursor: pointer;
 	transition: border .25s ease-in-out, background-color .25s ease-in-out, color .25s ease-in-out;
