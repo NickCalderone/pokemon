@@ -2,22 +2,17 @@ import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import Content from '../shared/content'
 import Fuse from 'fuse.js';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Results from './Results';
 
 export default function NavBar({ pokemonLinks })
 {
 
-  // let myBody = document.querySelector("body");
+  let resultsRef = useRef(null);
 
-  function handleClick(e)
-  {
-    setResults([]);
-    setSearch("");
-  }
+  let [focus, setFocus] = useState(false);
 
-  // myBody.addEventListener("click", handleClick);
-
+  let display = focus ? "block" : "none";
 
   let Fuze = new Fuse(pokemonLinks, {
     threshold: 0.0,
@@ -35,6 +30,18 @@ export default function NavBar({ pokemonLinks })
     setResults(Fuze.search(e.target.value));
   }
 
+  function handleBlur(e){
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      setFocus(false);
+    }
+    return
+  }
+
+  function handleClick(){
+      setFocus(false);
+      return
+  }
+
   return (
     <Nav>
       <Content>
@@ -44,10 +51,10 @@ export default function NavBar({ pokemonLinks })
             <LinkStyled to="/about" activeClassName="active">About</LinkStyled>
             <LinkStyled to="/favorites" activeClassName="active">Favorites</LinkStyled>
           </Links>
-          <SearchWrapper id="search">
+          <SearchWrapper onFocus={()=>setFocus(true)} onBlur={handleBlur} id="search">
             <SearchInput type="search" placeholder="(ex: Pikachu)" value={search} onChange={handleSearch} />
-            <div className="test">
-              {(!results.length > 0) || <Results results={results} />}
+            <div ref={resultsRef} onClick={handleClick} style={{display: display}}>
+              {(!results.length > 0) || <Results id="search-results" results={results} />}
             </div>
           </SearchWrapper>
         </NavInner>
