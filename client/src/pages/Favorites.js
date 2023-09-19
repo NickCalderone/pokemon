@@ -2,7 +2,7 @@ import { useFetchAll } from "../utility/utility";
 import Content from "../components/shared/content";
 import H1 from "../components/shared/H1";
 import PokemonLayout from "../components/pokemon/PokemonLayout";
-import Loading from "../components/shared/Loading";
+import Loading from "../components/ui/Loading";
 
 export default function Favorites({ favorites, handleFavorites })
 {

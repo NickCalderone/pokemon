@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Tile({ name, url }){
+export default function Tile({ name }){
 
 	return (
 		<LinkWrapper className="tile" to={`/pokemon/${name}`}>
@@ -43,7 +43,4 @@ let TileWrapper = styled.div`
 			color: var(--white);
 	}
 
-`
-
-let Name = styled.p`
 `

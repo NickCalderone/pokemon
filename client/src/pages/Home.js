@@ -3,7 +3,7 @@ import { useFetch, useFetchPokemon } from '../utility/utility'
 import AllTiles from '../components/AllTiles'
 import Content from '../components/shared/content';
 import H1 from '../components/shared/H1';
-import Loading from '../components/shared/Loading';
+import Loading from '../components/ui/Loading';
 
 export default function Home({ pokemonLinks, loading })
 {
