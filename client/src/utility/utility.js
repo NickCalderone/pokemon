@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export function useFetch(url, setLoading, startingState)
+export function useFetchLegacy(url, setLoading, startingState)
 {
 
 	// create data state
@@ -26,6 +26,34 @@ export function useFetch(url, setLoading, startingState)
 	}, [url, setLoading]);
 
 	return data;
+
+}
+
+export function useFetch(url)
+{
+
+	// create data state
+	const [data, setData] = useState({});
+	const [loading, setLoading] = useState(true);
+
+
+	//fetch data and update state
+	useEffect(() =>
+	{
+
+		async function fetchUrl()
+		{
+			let response = await fetch(url);
+			let json = await response.json();
+			setData(json.results);
+			setLoading(false);
+		}
+
+		fetchUrl();
+
+	}, []);
+
+	return [loading, data];
 
 }
 
@@ -55,18 +83,22 @@ export function useFetchPokemon(setLoading, setData)
 export function useFetchAll(pokemon)
 {
 
-	// set the loading state for the pokemon data to true
-	let [pokemonLoading, setPokemonLoading] = useState(true)
-	let [pokemonSpeciesLoading, setPokemonSpeciesLoading] = useState(true)
-
+	let returnObj = {};
 
 	// fetch all data about pokemon 
 	let speciesUrl = `/api/pokemon-species/${pokemon}`;
-	let speciesData = useFetch(speciesUrl, setPokemonLoading, {});
+	let [speciesLoading, speciesData] = useFetch(speciesUrl);
 	let url = `/api/pokemon/${pokemon}`;
-	let data = useFetch(url, setPokemonSpeciesLoading, {});
+	let [dataLoading, data] = useFetch(url);
 
-	return [data, pokemonLoading, speciesData, pokemonSpeciesLoading];
+
+	returnObj.name = pokemon;
+	returnObj.data = data;
+	returnObj.species = speciesData;
+
+	let anythingLoading = (dataLoading || speciesLoading);
+
+	return [anythingLoading, returnObj];
 
 }
 

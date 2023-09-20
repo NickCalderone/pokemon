@@ -10,16 +10,9 @@ export default function Pokemon({ favorites, handleFavorites })
 	// get the pokemon name from the url
 	let { pokemon } = useParams();
 
-	// fetch all data on the pokemon
-	// let [ data, pokemonLoading, speciesData, pokemonSpeciesLoading ] = useFetchAll(pokemon);
-
-	// Check if anything is loading
-	// const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
-
 	return (
 		<Content>
 			<H1>Pokédex Entry</H1>
-			{/* only display component if we are done loading */}
 			<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} />
 		</Content>
 	)

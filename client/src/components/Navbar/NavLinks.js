@@ -4,9 +4,9 @@ import { NavLink } from "react-router-dom"
 export default function NavLinks(){
 	return (
 		<Links>
-			<LinkStyled to="/" activeClassName="active">Home</LinkStyled>
-			<LinkStyled to="/about" activeClassName="active">About</LinkStyled>
-			<LinkStyled to="/favorites" activeClassName="active">Favorites</LinkStyled>
+			<LinkStyled to="/">Home</LinkStyled>
+			<LinkStyled to="/about">About</LinkStyled>
+			<LinkStyled to="/favorites">Favorites</LinkStyled>
 		</Links>
 	)
 }

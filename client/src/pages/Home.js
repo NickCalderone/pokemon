@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFetch, useFetchPokemon } from '../utility/utility'
-import AllTiles from '../components/AllTiles'
+import AllTiles from '../components/ui/AllTiles'
 import Content from '../components/shared/content';
 import H1 from '../components/shared/H1';
 import Loading from '../components/ui/Loading';

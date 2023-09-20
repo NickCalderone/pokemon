@@ -8,7 +8,7 @@ import Footer from './components/Footer'
 import Pokemon from './pages/Pokemon'
 import styled from "styled-components";
 import container_bg from './assets/container_bg.png';
-import { useFetchPokemon } from './utility/utility';
+import { useFetchPokemon, useFetchAll } from './utility/utility';
 import './App.css';
 import Search from "./features/search/Search";
 import NavLinks from "./components/Navbar/NavLinks";
@@ -19,11 +19,28 @@ function App()
 
   function handleFavorites(value)
   {
-    if (!favorites.includes(value))
+    console.log("fav: ", favorites)
+    console.log("value: ", value)
+    // console.log(favorites.some((element) => element.name == value.name))
+    if (favorites.some((element) => element.name == value.name))
     {
-      setFavorites([...favorites, value])
-    } else setFavorites(favorites.filter(poke => poke !== value))
+      setFavorites(prev => prev.filter(poke => poke.name !== value.name));
+    } else setFavorites(prev => [...prev, value])
+
+    console.log("fav: ", favorites)
   }
+
+  // function handleFavoritesNew(value){
+
+  //   if (favorites.hasOwnProperty(value)){
+  //     let newFavorites = favorites.filter(poke => poke.name !== value);
+  //     setFavorites(newFavorites);
+  //   } else {
+  //     let [loading, data] = useFetchAll(value);
+
+  //     setFavorites([...favorites, data])
+  //   }
+  // }
 
   // loading
   let [pokemonLinksLoading, setPokemonLinksLoading] = useState(true);

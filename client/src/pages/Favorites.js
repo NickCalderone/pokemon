@@ -19,11 +19,11 @@ export default function Favorites({ favorites, handleFavorites })
 		)
 	}
 
-	let favoritedPokemon = favorites.map((pokemon, index) =>
+	let favoritedPokemon = favorites.map((pokemon) =>
 	{
 
 		return (
-			<PokemonLayout pokemon={pokemon} favorites={favorites} handleFavorites={handleFavorites} key={index}/>
+			<PokemonLayout pokemon={pokemon.name} favorites={favorites} handleFavorites={handleFavorites} key={pokemon.name}/>
 		)
 
 	})
@@ -37,23 +37,3 @@ export default function Favorites({ favorites, handleFavorites })
 		</Content>
 	)
 }
-
-// export default function Pokemon({favorites, handleFavorites})
-// {
-
-// 	// get the pokemon name from the url
-// 	let { pokemon } = useParams();
-
-// 	// fetch all data on the pokemon
-// 	let [ data, pokemonLoading, speciesData, pokemonSpeciesLoading ] = useFetchAll(pokemon);
-
-// 	// Check if anything is loading
-// 	const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
-
-// 	return (
-// 		<div>
-// 			{/* only display component if we are done loading */}
-// 			{anythingLoading ? <div>loading</div> : <PokemonLayout data={data} speciesData={speciesData} favorites={favorites} handleFavorites={handleFavorites} />}
-// 		</div>
-// 	)
-// }

@@ -7,36 +7,35 @@ import FlavorText from './FlavorText';
 import Details from './Details';
 import Favorite from './Favorite';
 import Id from "./Id";
+import Loading from "../ui/Loading";
 
-// export default function PokemonLayout({ data, speciesData, favorites, handleFavorites })
 export default function PokemonLayout({ pokemon, favorites, handleFavorites })
 {
 
-	let [data, pokemonLoading, speciesData, pokemonSpeciesLoading] = useFetchAll(pokemon);
+	let [loading, pokemonData] = useFetchAll(pokemon);
 
-	const anythingLoading = (pokemonLoading || pokemonSpeciesLoading);
-
+	console.log(pokemonData)
 
 	return (
 		<>
-			{anythingLoading ? <div>loading</div> :
+			{loading ? <Loading />:
 				<Layout>
 					<Title>
 						<TitleLeft>
-							<Id>#{data.id}</Id><H2>{capitalize(data.name)}</H2>
+							<Id>#{pokemonData.data.id}</Id><H2>{capitalize(pokemonData.name)}</H2>
 						</TitleLeft>
-						<Favorite data={data} favorites={favorites} handleFavorites={handleFavorites} />
+						<Favorite data={pokemonData} favorites={favorites} handleFavorites={handleFavorites} />
 					</Title>
 					<Avatar>
-						<Image src={data.sprites.other["official-artwork"].front_default} name={data.name} />
-						<Types types={data.types} />
+						<Image src={pokemonData.data.sprites.other["official-artwork"].front_default} name={pokemonData.data.name} />
+						<Types types={pokemonData.data.types} />
 					</Avatar>
 					<DetailsTop>
-						<FlavorText data={speciesData.flavor_text_entries} />
-						<Stats data={data.stats} />
+						<FlavorText data={pokemonData.species.flavor_text_entries} />
+						<Stats data={pokemonData.data.stats} />
 					</DetailsTop>
 					<DetailsBottom>
-						<Details data={data} speciesData={speciesData} />
+						<Details data={pokemonData.data} speciesData={pokemonData.species} />
 					</DetailsBottom>
 				</Layout>
 			}
